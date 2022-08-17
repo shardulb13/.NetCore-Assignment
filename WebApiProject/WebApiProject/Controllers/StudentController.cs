@@ -12,7 +12,7 @@ namespace WebApiProject.Controllers
     {
 
         [HttpGet]
-        public IEnumerable<Student> GetStudent()
+        public List<Student> GetStudent()
         {
             return StudentDetails();
         }
@@ -30,7 +30,7 @@ namespace WebApiProject.Controllers
         }
 
        
-        private List<Student> StudentDetails()
+        List<Student> StudentDetails()
         {
             return new List<Student>()
             {
