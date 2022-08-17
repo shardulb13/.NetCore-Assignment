@@ -40,7 +40,7 @@ namespace SimpleRepository
                     options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddSingleton(typeof(IStudentRepository),typeof( StudentRepo));
+            services.AddTransient(typeof(IStudentRepository),typeof( StudentRepo));
             
         }
 

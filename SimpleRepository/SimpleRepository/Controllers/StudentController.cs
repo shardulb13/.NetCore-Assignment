@@ -35,7 +35,7 @@ namespace SimpleRepository.Controllers
         {
             return Ok(await _studentRepo.GetAllStudents());
 
-            //// BELOW LINE OF CODE IS PERFORMED BY USING CREATING OBJECT OF SERVICE CLASS.....
+            //// #BELOW LINE OF CODE IS PERFORMED BY USING CREATING OBJECT OF SERVICE CLASS.....
             //var result = await studentRepoClassObject.GetAllStudents();
             //return Ok(result);
         }
@@ -44,12 +44,18 @@ namespace SimpleRepository.Controllers
         public async Task<ActionResult> GetStudentsById(int id)
         {
             return Ok(await _studentRepo.GetStudentById(id));
+
+            //var result = await studentRepoClassObject.GetStudentById(id);
+            //return Ok(result);
         }
 
         [HttpPost]
         public async Task<ActionResult> AddStudents(Student studobj)
         {
             return Ok(await _studentRepo.AddStudent(studobj));
+
+            //var addStudent = await studentRepoClassObject.AddStudent(studobj);
+            //return Ok(addStudent);
         }
 
         [HttpPut]
@@ -57,13 +63,17 @@ namespace SimpleRepository.Controllers
         {
             var updateStudent = await _studentRepo.UpdateStudent(studobj);
             return updateStudent;
+
+            //return await studentRepoClassObject.UpdateStudent(studobj);
         }
 
         [HttpDelete]
         public async Task<Student> DeleteStudents(int id)
         {
-            var deleteStudent = await _studentRepo.DeleteStudent(id);
-            return deleteStudent;
+            //var deleteStudent = await _studentRepo.DeleteStudent(id);
+            //return deleteStudent;
+
+            return await studentRepoClassObject.DeleteStudent(id);
         }
 
     }
