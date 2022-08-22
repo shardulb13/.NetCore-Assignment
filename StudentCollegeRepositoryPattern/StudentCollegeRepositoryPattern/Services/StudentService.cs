@@ -13,7 +13,7 @@ namespace StudentCollegeRepositoryPattern.Services
         IEnumerable<Student> GetAll();
         Student GetById(int id);
         Task<Student> AddStudent(Student studObj);
-        Student UpdateStudent(Student updateStud);
+        Student UpdateStudent(Student updateStud, int id);
         Student DeleteStudent(int id);
 
     }
@@ -98,7 +98,7 @@ namespace StudentCollegeRepositoryPattern.Services
             }
         }
 
-        public Student UpdateStudent(Student updateStud)
+        public Student UpdateStudent(Student updateStud, int id)
         {
             var obj = new StudentEntity
             {
@@ -111,16 +111,14 @@ namespace StudentCollegeRepositoryPattern.Services
                CollegeId = updateStud.CollegeId
 
             };
-            if(obj.Id== updateStud.Id)
+            var updatedata = StudentDA.UpdateStudent(obj, id);
+            return new Student
             {
-                var updatedata = StudentDA.UpdateStudent(obj);
-                return new Student
-                {
-                    Id = updatedata.Id,
-                    FirstName = updatedata.FirstName
-                };
-            }
-            return null;
+                Id = updatedata.Id,
+                FirstName = updatedata.FirstName
+             };
+            
+          
         }
     }
 }

@@ -38,9 +38,9 @@ namespace StudentCollegeRepositoryPattern.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateStudent(Student updateStud)
+        public IActionResult UpdateStudent(Student updateStud, int id)
         {
-            return Ok(studentService.UpdateStudent(updateStud));
+            return Ok(studentService.UpdateStudent(updateStud, id));
         }
 
         [HttpDelete]

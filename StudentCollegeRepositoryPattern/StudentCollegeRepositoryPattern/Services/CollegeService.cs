@@ -14,7 +14,7 @@ namespace StudentCollegeRepositoryPattern.Services
         IEnumerable<College> GetAll();
         College GetById(int id);
         Task<College> AddCollege(College collegeObj);
-        College UpdateCollege(College updateCollege);
+        College UpdateCollege(College updateCollege, int id);
         College DeleteCollege(int id);
 
     }
@@ -89,18 +89,18 @@ namespace StudentCollegeRepositoryPattern.Services
             }
         }
 
-        public College UpdateCollege(College updateCollege)
+        public College UpdateCollege(College updateCollege, int id)
         {
             var obj = new CollegeEntity
             {
-                Id = updateCollege.Id,
+                //Id = updateCollege.Id,
                 Name = updateCollege.Name,
                 University = updateCollege.University,
                 Address = updateCollege.Address,
                 District = updateCollege.District
 
             };
-            var updatedata = CollegeDA.UpdateCollege(obj);
+            var updatedata = CollegeDA.UpdateCollege(obj, id);
             return new College
             {
                 Id = updatedata.Id,

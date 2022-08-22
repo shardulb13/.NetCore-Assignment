@@ -13,7 +13,7 @@ namespace StudentCollegeRepositoryPattern.DataAccess
         IEnumerable<StudentEntity> GetAll();
         StudentEntity GetById(int id);
         Task<StudentEntity> AddStudent(StudentEntity stdObj);
-        StudentEntity UpdateStudent(StudentEntity updateStud);
+        StudentEntity UpdateStudent(StudentEntity updateStud, int id);
         StudentEntity DeleteStudent(int id);
     }
     public class StudentDA : IStudentDA
@@ -54,12 +54,12 @@ namespace StudentCollegeRepositoryPattern.DataAccess
             return _context.StudentTable.FirstOrDefault(a => a.Id == id);
         }
 
-        public StudentEntity UpdateStudent(StudentEntity updateStud)
+        public StudentEntity UpdateStudent(StudentEntity updateStud, int id)
         {
-            var update = _context.StudentTable.Where(a => a.Id == updateStud.Id).ToList();
+            var update = _context.StudentTable.Where(a => a.Id == id).ToList();
             foreach (var data in update)
             {
-                if (data.Id == updateStud.Id)
+                if (data.Id == id)
                 {
                     data.FirstName = updateStud.FirstName;
                     data.LastName = updateStud.LastName;

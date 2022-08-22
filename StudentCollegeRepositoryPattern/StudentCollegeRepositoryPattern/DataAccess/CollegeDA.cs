@@ -13,7 +13,7 @@ namespace StudentCollegeRepositoryPattern.DAL
         IEnumerable<CollegeEntity> GetAll();
         CollegeEntity GetById(int id);
         Task<CollegeEntity> AddCollege(CollegeEntity clgObj);
-        CollegeEntity UpdateCollege(CollegeEntity updateClg);
+        CollegeEntity UpdateCollege(CollegeEntity updateClg, int id);
         CollegeEntity DeleteCollege(int id);
     }
     public class CollegeDA : ICollegeDA
@@ -54,12 +54,12 @@ namespace StudentCollegeRepositoryPattern.DAL
             return _context.CollegeTable.FirstOrDefault(a=> a.Id == id);
         }
 
-        public CollegeEntity UpdateCollege(CollegeEntity updateClg)
+        public CollegeEntity UpdateCollege(CollegeEntity updateClg, int id)
         {
-            var update = _context.CollegeTable.Where(a => a.Id == updateClg.Id).ToList();
+            var update = _context.CollegeTable.Where(a => a.Id == id).ToList();
             foreach (var data in update)
             {
-                if (data.Id == updateClg.Id)
+                if (data.Id == id)
                 {
                     data.Name = updateClg.Name;
                     data.University = updateClg.University;
